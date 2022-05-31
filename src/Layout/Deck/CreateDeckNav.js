@@ -3,14 +3,16 @@ import { Link } from "react-router-dom";
 
 function CreateDeckNav() {
   return (
-    <div>
-      <p>
-        <Link to="/">Home</Link>
-      </p>
-      <p>
-        <Link to="/decks/new">Create Deck</Link>
-      </p>
-    </div>
+    <nav aria-label="breadcrumb">
+      <ol className="breadcrumb">
+        <li class="breadcrumb-item">
+          <Link to="/">Home</Link>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+          Create Deck
+        </li>
+      </ol>
+    </nav>
   );
 }
 

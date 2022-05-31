@@ -18,7 +18,6 @@ function CreateDeckForm() {
   return (
     <div>
       <CreateDeckNav />
-      <Link to="/decks/new">Create Deck</Link>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">
           Name
