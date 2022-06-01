@@ -1,20 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { listDecks } from "../utils/api";
+import Deck from "./Deck/Deck";
 
 function Decks({ decks, setDecks }) {
   useEffect(() => {
     const abortController = new AbortController();
-    listDecks(abortController.signal).then((response) => console.log(response));
+    async function loadDecks() {
+      try {
+        const response = await listDecks(abortController.signal);
+        setDecks(response);
+      } catch (error) {
+        console.log(error);
+      }
 
-    return () => abortController.abort();
+      return () => {
+        abortController.abort();
+      };
+    }
+    loadDecks();
   }, []);
 
+  const list = decks.map((deck) => <Deck key={deck.id} deck={deck} />);
+
   return (
-    <ul>
-      {decks.map((deck) => (
-        <li key={deck.id}>{deck}</li>
-      ))}
-    </ul>
+    <div className="container">
+      <div className="row">{list}</div>
+    </div>
   );
 }
 
