@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { createDeck } from "../../utils/api/index";
-import { Router, Route, Switch, Link } from "react-router-dom";
 import CreateDeckNav from "./CreateDeckNav";
 
-function CreateDeckForm() {
+function CreateDeckForm({ decks }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 
@@ -13,6 +12,8 @@ function CreateDeckForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     createDeck();
+    setName("");
+    setDescription("");
   };
 
   return (
@@ -25,6 +26,7 @@ function CreateDeckForm() {
             type="text"
             id="name"
             name="name"
+            value={name}
             onChange={handleNameChange}
           />
         </label>
@@ -34,6 +36,7 @@ function CreateDeckForm() {
             type="text"
             name="description"
             id="description"
+            value={description}
             onChange={handleDescriptionChange}
           />
         </label>
