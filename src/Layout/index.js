@@ -5,6 +5,7 @@ import Home from "./Home";
 import CreateDeckForm from "./Deck/CreateDeckForm";
 import Deck from "./Deck/Deck";
 import StudyDeck from "./Study/StudyDeck";
+import AddCard from "./Card/AddCard";
 import { Route, Switch } from "react-router-dom";
 
 function Layout() {
@@ -28,6 +29,10 @@ function Layout() {
 
           <Route path="/decks/:deckId/study">
             <StudyDeck />
+          </Route>
+
+          <Route path="/decks/:deckId/cards/new">
+            <AddCard />
           </Route>
 
           <Route>
