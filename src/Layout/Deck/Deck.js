@@ -18,7 +18,7 @@ function Deck({ deck, setDeck }) {
       };
     }
     loadDeck();
-  }, [deck.id]);
+  }, [deck]);
 
   return (
     <div>
