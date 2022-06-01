@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { listDecks } from "../utils/api";
 
-function Decks() {
-  const [decks, setDecks] = useState([]);
-  //   useEffect(() => {
-  //     const abortController = new AbortController();
-  //     listDecks(abortController.signal).then((response) => console.log(response));
+function Decks({ decks, setDecks }) {
+  useEffect(() => {
+    const abortController = new AbortController();
+    listDecks(abortController.signal).then((response) => console.log(response));
 
-  //     return () => abortController.abort();
-  //   }, []);
+    return () => abortController.abort();
+  }, []);
 
   return (
     <ul>
