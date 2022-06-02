@@ -27,13 +27,13 @@ function Decks({ decks, setDecks }) {
             <div className="card-body">
               <h5 className="card-title">{deck.name}</h5>
               <p className="card-text">{deck.description}</p>
-              <button type="button" class="btn btn-secondary">
+              <button type="button" className="btn btn-secondary">
                 View
               </button>
-              <button type="button" class="btn btn-primary">
+              <button type="button" className="btn btn-primary">
                 Study
               </button>
-              <button type="button" class="btn btn-danger">
+              <button type="button" className="btn btn-danger">
                 Delete
               </button>
             </div>
