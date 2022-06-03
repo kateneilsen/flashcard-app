@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { listDecks } from "../utils/api";
+import Popup from "./Popup";
 
 function Decks({ decks, setDecks }) {
   useEffect(() => {
@@ -33,9 +34,7 @@ function Decks({ decks, setDecks }) {
               <button type="button" className="btn btn-primary">
                 Study
               </button>
-              <button type="button" className="btn btn-danger">
-                Delete
-              </button>
+              <Popup decks={decks} setDecks={setDecks} />
             </div>
           </div>
         );
