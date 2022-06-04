@@ -1,13 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { readDeck } from "../../utils/api";
-import Cards from "./Cards";
 
-function Deck({ deck, setDeck }) {
+function Deck({ deckId }) {
+  const [deck, setDeck] = useState({});
   useEffect(() => {
     const abortController = new AbortController();
     async function loadDeck() {
       try {
-        const response = await readDeck(deck.id, abortController.signal);
+        const response = await readDeck(deckId, abortController.signal);
+        console.log(response);
         setDeck(response);
       } catch (error) {
         console.log(error);
@@ -18,11 +19,16 @@ function Deck({ deck, setDeck }) {
       };
     }
     loadDeck();
-  }, [deck]);
+  }, [deckId]);
 
   return (
     <div>
-      <h2>Decks</h2>
+      <div className="card">
+        <div className="card-body">
+          <h5 className="card-title">{deck.name}</h5>
+          <p className="card-text">{deck.description}</p>
+        </div>
+      </div>
     </div>
   );
 }
