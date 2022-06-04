@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
-export default function Popup({ decks, setDecks }) {
+export default function DeletePrompt({ decks, setDecks }) {
   const [show, setShow] = useState(false);
 
   const handleCancel = () => setShow(false);

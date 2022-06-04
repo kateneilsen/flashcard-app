@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { listDecks } from "../utils/api";
-import Popup from "./Popup";
+import DeletePrompt from "./DeletePrompt";
+import { useHistory } from "react-router-dom";
 
 function Decks({ decks, setDecks }) {
+  const history = useHistory();
+
   useEffect(() => {
     const abortController = new AbortController();
     async function loadDecks() {
@@ -20,6 +23,12 @@ function Decks({ decks, setDecks }) {
     loadDecks();
   }, []);
 
+  const handleDeleteDeck = (idToDelete) => {
+    setDecks((currentDecks) => {
+      currentDecks.filter((deck) => deck.id !== idToDelete);
+    });
+  };
+
   return (
     <div>
       {decks.map((deck) => {
@@ -28,13 +37,21 @@ function Decks({ decks, setDecks }) {
             <div className="card-body">
               <h5 className="card-title">{deck.name}</h5>
               <p className="card-text">{deck.description}</p>
-              <button type="button" className="btn btn-secondary">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={() => history.push("/decks/:deckId")}
+              >
                 View
               </button>
-              <button type="button" className="btn btn-primary">
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={() => history.push("/decks/:deckId/study")}
+              >
                 Study
               </button>
-              <Popup decks={decks} setDecks={setDecks} />
+              <DeletePrompt decks={decks} setDecks={setDecks} />
             </div>
           </div>
         );
