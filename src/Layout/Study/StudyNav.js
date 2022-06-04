@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function StudyNav({ deck }) {
+function StudyNav() {
   return (
     <nav aria-label="breadcrumb">
       <ol className="breadcrumb">
@@ -9,7 +9,7 @@ function StudyNav({ deck }) {
           <Link to="/">Home</Link>
         </li>
         <li className="breadcrumb-item" aria-current="page">
-          {deck.name}
+          Deck Name
         </li>
         <li className="breadcrumb-item active" aria-current="page">
           Study
