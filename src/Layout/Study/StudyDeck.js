@@ -1,7 +1,5 @@
 import React from "react";
 
-function StudyDeck() {
-  return <h1>Study Deck</h1>;
+export default function StudyDeck({ deck }) {
+  return <div>StudyDeck</div>;
 }
-
-export default StudyDeck;
