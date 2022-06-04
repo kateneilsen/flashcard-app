@@ -23,16 +23,16 @@ function Layout() {
             <CreateDeckForm />
           </Route>
 
-          <Route path="/decks/:deckId">
-            <Deck />
+          <Route path="/decks/:deckId/cards/new">
+            <AddCard />
           </Route>
 
           <Route path="/decks/:deckId/study">
             <StudyDeck />
           </Route>
 
-          <Route path="/decks/:deckId/cards/new">
-            <AddCard />
+          <Route path="/decks/:deckId">
+            <Deck />
           </Route>
 
           <Route>

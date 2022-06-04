@@ -1,42 +1,20 @@
-import React, { useState } from "react";
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
+import React, { useState, useEffect } from "react";
+import { deleteDeck } from "../utils/api";
+import { useHistory } from "react-router-dom";
 
-export default function DeletePrompt({ decks, setDecks }) {
-  const [show, setShow] = useState(false);
+export default function DeletePrompt({ decks, setDecks, handleDeleteDeck }) {
+  const history = useHistory();
 
-  const handleCancel = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const handleDeleteTrue = (idToDelete) => {
-    setDecks((currentDecks) => {
-      currentDecks.filter((deck) => deck.id !== idToDelete);
-    });
-  };
+  // const handleDelete = (event) => {
+  //   event.preventDefault();
+  //   window.confirm("Delete this deck? You will not be able to recover it.")
+  //     ? deleteDeck(deckId)
+  //     : history.push("/");
+  // };
 
   return (
-    <div>
-      <Button variant="danger" onClick={handleShow}>
-        Delete
-      </Button>
-
-      <Modal
-        show={show}
-        onHide={handleCancel}
-        handleDeleteTrue={handleDeleteTrue}
-      >
-        <Modal.Body>
-          <p>Delete this deck?</p>
-          <p>You will not be able to recover it.</p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCancel}>
-            Cancel
-          </Button>
-          <Button variant="primary" onClick={handleDeleteTrue}>
-            Ok
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </div>
+    <button className="btn btn-danger" onClick={()=>}>
+      Delete
+    </button>
   );
 }
