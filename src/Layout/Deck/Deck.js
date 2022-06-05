@@ -3,9 +3,10 @@ import { readDeck, deleteDeck } from "../../utils/api";
 import { Link, useHistory, useParams } from "react-router-dom";
 import DeckNav from "./CreateDeckNav";
 import DeleteDeck from "./DeleteDeck";
+import CardsList from "../Card/CardsList";
 
 function Deck() {
-  const [deck, setDeck] = useState({});
+  const [deck, setDeck] = useState([]);
   const { deckId } = useParams();
   const history = useHistory();
 
@@ -27,29 +28,34 @@ function Deck() {
     loadDeck();
   }, [deckId]);
 
+  if (deck.length === 0) return null;
   return (
     <div>
       <DeckNav />
-
       <div key={deck.id} className="card">
         <div className="card-body">
           <h5 className="card-title">{deck.name}</h5>
           <p className="card-text">{deck.description}</p>
         </div>
-        <Link to={`/decks/${deckId}/edit`} className="btn btn-secondary">
-          Edit
-        </Link>
-        <Link to={`/decks/${deckId}/study`} className="btn btn-primary">
-          Study
-        </Link>
-        <Link to={`/decks/${deckId}/cards/new`} className="btn btn-primary">
-          Add Cards
-        </Link>
-        <DeleteDeck deck={deck} setDeck={setDeck} />
+        <div>
+          <Link to={`/decks/${deckId}/edit`} className="btn btn-secondary">
+            Edit
+          </Link>
+          <Link to={`/decks/${deckId}/study`} className="btn btn-primary">
+            Study
+          </Link>
+          <Link to={`/decks/${deckId}/cards/new`} className="btn btn-primary ">
+            Add Cards
+          </Link>
+          <DeleteDeck deck={deck} setDeck={setDeck} />
+        </div>
+      </div>
+      <div className="container">
+        <h1>Cards</h1>
+        <CardsList cards={deck.cards} />
       </div>
     </div>
   );
-  return "Loading...";
 }
 
 export default Deck;
