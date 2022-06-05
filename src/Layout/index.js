@@ -8,6 +8,7 @@ import Deck from "./Deck/Deck";
 import StudyDeck from "./Study/StudyDeck";
 import AddCard from "./Card/AddCard";
 import EditDeck from "./Deck/EditDeck";
+import EditCard from "./Card/EditCard";
 import { Route, Switch } from "react-router-dom";
 
 function Layout() {
@@ -43,6 +44,10 @@ function Layout() {
 
           <Route exact path="/decks/new">
             <CreateDeckForm />
+          </Route>
+
+          <Route path="/decks/:deckId/cards/:cardId/edit">
+            <EditCard />
           </Route>
 
           <Route path="/decks/:deckId/cards/new">
