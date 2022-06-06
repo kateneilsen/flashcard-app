@@ -1,29 +1,59 @@
-import React, { useState } from "react";
-import { readDeck } from "../../utils/api";
+import React, { useState, useEffect } from "react";
+import { readDeck, updateDeck } from "../../utils/api";
 import DeckNav from "./DeckNav";
 import { useParams, useHistory } from "react-router-dom";
 
-export default function EditDeck({ deck, setDeck }) {
-  const [preloadedData, setPreloadedData] = useState({ ...deck });
-
+export default function EditDeck() {
   const history = useHistory();
   const deckId = useParams();
 
+  const initialDeckState = {
+    id: "",
+    name: "",
+    description: "",
+  };
+
+  const [deck, setDeck] = useState({ ...initialDeckState });
+
+  useEffect(() => {
+    const abortController = new AbortController();
+    async function loadDeck() {
+      try {
+        const response = await readDeck(deckId, abortController.signal);
+        setDeck(response);
+      } catch (error) {
+        console.log(error);
+      }
+
+      return () => {
+        abortController.abort();
+      };
+    }
+    loadDeck();
+  }, [deckId]);
+
   const handleChange = ({ target }) => {
-    setPreloadedData({
-      ...preloadedData,
+    setDeck({
+      ...deck,
       [target.name]: target.value,
     });
   };
 
-  const handleSubmit = (event) => {
+  async function handleSubmit(event) {
     event.preventDefault();
-    console.log("Submitted:", preloadedData);
-    setDeck({ ...preloadedData });
-  };
+    const abortController = new AbortController();
+    const response = await updateDeck({ ...deck }, abortController.signal);
+    history.push(`/decks/${deckId}`);
+    return response;
+  }
+
+  async function handleCancel() {
+    history.push(`decks/${deckId}`);
+  }
 
   return (
     <div>
+      <h1>Edit Deck</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">
           Name
@@ -31,7 +61,7 @@ export default function EditDeck({ deck, setDeck }) {
             type="text"
             id="name"
             name="name"
-            value={preloadedData.name}
+            value={deck.name}
             onChange={handleChange}
           />
         </label>
@@ -41,7 +71,7 @@ export default function EditDeck({ deck, setDeck }) {
             type="text"
             name="description"
             id="description"
-            value={preloadedData.description}
+            value={deck.description}
             onChange={handleChange}
           />
         </label>
@@ -50,7 +80,7 @@ export default function EditDeck({ deck, setDeck }) {
           <button
             type="button"
             className="btn btn-secondary"
-            onClick={() => history.push("/decks/:deckId")}
+            onClick={() => handleCancel()}
           >
             Cancel
           </button>
