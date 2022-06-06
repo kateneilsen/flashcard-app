@@ -61,15 +61,14 @@ function CreateDeckForm({ decks }) {
         </label>
 
         <div>
-          <div>
-            <button
-              type="button"
-              className="btn btn-secondary"
-              onClick={() => history.push("/")}
-            >
-              Cancel
-            </button>
-          </div>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() => history.push("/")}
+          >
+            Cancel
+          </button>
+
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
