@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Params, useHistory } from "react-router-dom";
 
 export default function DeckNav({ deck }) {
+  const history = useHistory();
   return (
     <nav aria-label="breadcrumb">
       <ol className="breadcrumb">
@@ -9,7 +10,7 @@ export default function DeckNav({ deck }) {
           <Link to="/">Home</Link>
         </li>
         <li className="breadcrumb-item active" aria-current="page">
-          {deck.name}
+          <Link to="/decks/:deckId">{deck.name}</Link>
         </li>
       </ol>
     </nav>

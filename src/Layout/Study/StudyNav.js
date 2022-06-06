@@ -9,7 +9,7 @@ function StudyNav({ deck }) {
           <Link to="/">Home</Link>
         </li>
         <li className="breadcrumb-item" aria-current="page">
-          {deck?.name}
+          <Link to="/decks/:deckId">{deck?.name}</Link>
         </li>
         <li className="breadcrumb-item active" aria-current="page">
           Study
