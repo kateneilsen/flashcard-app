@@ -15,7 +15,6 @@ function Deck() {
     async function loadDeck() {
       try {
         const response = await readDeck(deckId, abortController.signal);
-        console.log(response);
         setDeck(response);
       } catch (error) {
         console.log(error);
