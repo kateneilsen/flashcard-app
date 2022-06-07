@@ -5,10 +5,12 @@ import NotFound from "./NotFound";
 import Home from "./Home";
 import CreateDeckForm from "./Deck/CreateDeckForm";
 import Deck from "./Deck/Deck";
-import StudyDeck from "./Study/StudyDeck";
+import Study from "./Study/Study";
 import AddCard from "./Card/AddCard";
 import EditDeck from "./Deck/EditDeck";
 import EditCard from "./Card/EditCard";
+import NotEnough from "./Study/NotEnough";
+import DeleteDeck from "./Deck/DeleteDeck";
 import { Route, Switch } from "react-router-dom";
 
 function Layout() {
@@ -19,7 +21,6 @@ function Layout() {
     async function loadDecks() {
       try {
         const response = await listDecks(abortController.signal);
-        // console.log("setDecks:", response);
         setDecks(response);
       } catch (error) {
         console.log(error);
@@ -33,7 +34,7 @@ function Layout() {
   }, []);
 
   return (
-    <>
+    <div>
       <Header />
       <div className="container">
         {/* TODO: Implement the screen starting here */}
@@ -42,23 +43,23 @@ function Layout() {
             <CreateDeckForm />
           </Route>
 
-          <Route exact path="/decks/:deckId/cards/:cardId/edit">
+          <Route path="/decks/:deckId/cards/:cardId/edit">
             <EditCard />
           </Route>
 
-          <Route exact path="/decks/:deckId/cards/new">
+          <Route path="/decks/:deckId/cards/new">
             <AddCard />
           </Route>
 
-          <Route exact path="/decks/:deckId/edit">
+          <Route path="/decks/:deckId/edit">
             <EditDeck decks={decks} />
           </Route>
 
-          <Route exact path="/decks/:deckId/study">
-            <StudyDeck decks={decks} />
+          <Route path="/decks/:deckId/study">
+            <Study decks={decks} />
           </Route>
 
-          <Route exact path="/decks/:deckId">
+          <Route path="/decks/:deckId">
             <Deck />
           </Route>
 
@@ -71,7 +72,7 @@ function Layout() {
           </Route>
         </Switch>
       </div>
-    </>
+    </div>
   );
 }
 

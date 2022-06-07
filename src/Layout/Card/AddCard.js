@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { createCard, readDeck } from "../../utils/api";
-import CardNav from "./CardNav";
-import { useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 
 export default function AddCard() {
   const initialCardState = {
@@ -40,12 +39,26 @@ export default function AddCard() {
   async function handleSubmit(event) {
     event.preventDefault();
     const response = await createCard(deckId, card);
-    setCard({ ...initialCardState });
+    setCard(response);
   }
 
   return (
     <div>
-      <CardNav />
+      <div>
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item active" aria-current="page">
+              <Link to="/">Home</Link>
+            </li>
+            <li className="breadcrumb-item">
+              <Link to={`/decks/${deckId}`}>{deck?.name}</Link>
+            </li>
+            <li className="breadcrumb-item active" aria-current="page">
+              Add Card
+            </li>
+          </ol>
+        </nav>
+      </div>
       <h2>{deck.name}: Add Card</h2>
 
       <form onSubmit={handleSubmit}>

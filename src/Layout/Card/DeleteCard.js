@@ -2,25 +2,25 @@ import React from "react";
 import { deleteCard } from "../../utils/api";
 import { useHistory } from "react-router-dom";
 
-function DeleteCard() {
+function DeleteCard({ card }) {
   const history = useHistory();
 
   const handleDeleteCard = () => {
     const abortController = new AbortController();
-    deleteCard(cardId, abortController.signal).then(() => history.push("/"));
+    deleteCard(card.id, abortController.signal).then(() => history.go(0));
   };
   return (
     <button
-      className="btn btn-danger"
+      className="btn btn-sm btn-danger"
       onClick={() =>
         window.confirm(
           "Delete this deck? \n\n You will not be able to recover it."
         )
-          ? deleteFunction()
+          ? handleDeleteCard()
           : console.log("You clicked cancel")
       }
     >
-      DeleteDeck
+      Delete
     </button>
   );
 }

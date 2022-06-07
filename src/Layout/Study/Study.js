@@ -3,18 +3,13 @@ import { useParams } from "react-router-dom";
 import StudyNav from "./StudyNav";
 import Flashcard from "./Flashcard";
 import { readDeck } from "../../utils/api";
+import NotEnough from "./NotEnough";
 
-export default function StudyDeck() {
+export default function Study() {
   const { deckId } = useParams();
   const [deck, setDeck] = useState({ cards: [] });
 
   const [cardIndex, setCardIndex] = useState(0);
-
-  const handleCardIndex = () => {
-    const next = cardIndex + 1 === cards.length ? 0 : cardIndex + 1;
-    console.log(next);
-    setCardIndex(next);
-  };
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -41,11 +36,25 @@ export default function StudyDeck() {
 
   return (
     <div>
-      <StudyNav deck={deck} />
-      <h1>Study: {deck?.name}</h1>
-      <div>
-        <Flashcard card={cards[cardIndex]} setCardIndex={setCardIndex} />
-      </div>
+      <StudyNav deck={deck} deckId={deckId} />
+      {cards.length < 3 ? (
+        <div>
+          <NotEnough deckId={deckId} />
+        </div>
+      ) : (
+        <div>
+          <h1>Study: {deck?.name}</h1>
+          <h5 className="card-title">
+            Card {cardIndex + 1} of {cards.length}
+          </h5>
+          <Flashcard
+            card={cards[cardIndex]}
+            cardIndex={cardIndex}
+            setCardIndex={setCardIndex}
+            cards={cards}
+          />
+        </div>
+      )}
     </div>
   );
 }

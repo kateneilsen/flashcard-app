@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import CreateDeckButton from "./Deck/CreateDeckButton";
-import { listDecks } from "../utils/api";
 import { Link } from "react-router-dom";
 import DeleteDeck from "./Deck/DeleteDeck";
 

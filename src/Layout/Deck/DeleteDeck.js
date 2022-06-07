@@ -1,14 +1,16 @@
 import React from "react";
 import { deleteDeck } from "../../utils/api";
-import { useParams, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default function DeleteDeck({ deckId, decks, setDecks }) {
   const history = useHistory();
 
-  const deleteFunction = () => {
+  async function deleteFunction() {
     const abortController = new AbortController();
-    deleteDeck(deckId, abortController.signal).then(() => history.push("/"));
-  };
+    await deleteDeck(deckId, abortController.signal).then(() =>
+      history.push("/")
+    );
+  }
   return (
     <button
       className="btn btn-danger"

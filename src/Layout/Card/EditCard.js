@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { readDeck, updateCard, readCard } from "../../utils/api";
-import { Link, useHistory, useParams, useRouteMatch } from "react-router-dom";
-import CardNav from "./CardNav";
+import { Link, useHistory, useParams } from "react-router-dom";
 
 export default function EditCard() {
   const initialCardState = {
@@ -57,7 +56,21 @@ export default function EditCard() {
 
   return (
     <div>
-      <CardNav />
+      <div>
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item active" aria-current="page">
+              <Link to="/">Home</Link>
+            </li>
+            <li className="breadcrumb-item">
+              <Link to={`/decks/${deckId}`}>{deck?.name}</Link>
+            </li>
+            <li className="breadcrumb-item active" aria-current="page">
+              Edit Card {card.id}
+            </li>
+          </ol>
+        </nav>
+      </div>
       <h1>Edit Card</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">

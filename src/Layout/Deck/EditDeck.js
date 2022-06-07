@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { readDeck, updateDeck } from "../../utils/api";
-import DeckNav from "./DeckNav";
-import { useParams, useHistory } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 
 export default function EditDeck({ decks }) {
   const history = useHistory();
@@ -47,24 +46,37 @@ export default function EditDeck({ decks }) {
 
   return (
     <div>
-      <DeckNav />
+      <div>
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item active" aria-current="page">
+              <Link to="/">Home</Link>
+            </li>
+            <li className="breadcrumb-item">
+              <Link to={`/decks/${deckId}`}>{deck?.name}</Link>
+            </li>
+            <li className="breadcrumb-item active" aria-current="page">
+              Edit Deck
+            </li>
+          </ol>
+        </nav>
+      </div>
       <h1>Edit Deck</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label for="name" className="form-label">
-            Name
-          </label>
+          <div className="form-group"></div>
+          <label>Name</label>
           <input
             className="form-control"
-            type="text"
             id="name"
+            type="text"
             name="name"
             value={deck.name}
             onChange={handleChange}
           />
         </div>
         <div className="mb-3">
-          <label for="description" className="form-label">
+          <label htmlFor="description" className="form-label">
             Description
           </label>
           <textarea

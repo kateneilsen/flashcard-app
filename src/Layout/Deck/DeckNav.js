@@ -1,17 +1,15 @@
 import React from "react";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function DeckNav({ deck, deckId }) {
-  const history = useHistory();
-  // const { deckId } = useParams();
   return (
     <nav aria-label="breadcrumb">
       <ol className="breadcrumb">
-        <li className="breadcrumb-item">
+        <li className="breadcrumb-item active" aria-current="page">
           <Link to="/">Home</Link>
         </li>
-        <li className="breadcrumb-item" aria-current="page">
-          <Link to="/decks/:deckId">{deck?.name}</Link>
+        <li className="breadcrumb-item active" aria-current="page">
+          {deck?.name}
         </li>
       </ol>
     </nav>

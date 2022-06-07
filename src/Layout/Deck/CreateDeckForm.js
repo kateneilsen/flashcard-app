@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { createDeck } from "../../utils/api/index";
-import DeckNav from "./DeckNav";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
-function CreateDeckForm({ decks }) {
+export default function CreateDeckForm({ decks }) {
   const initialDeckState = {
     name: "",
     description: "",
@@ -25,7 +24,18 @@ function CreateDeckForm({ decks }) {
 
   return (
     <div>
-      <DeckNav />
+      <div>
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item active" aria-current="page">
+              <Link to="/">Home</Link>
+            </li>
+            <li className="breadcrumb-item active" aria-current="page">
+              Create Deck
+            </li>
+          </ol>
+        </nav>
+      </div>
       <h1>Create Deck</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
@@ -73,5 +83,3 @@ function CreateDeckForm({ decks }) {
     </div>
   );
 }
-
-export default CreateDeckForm;

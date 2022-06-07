@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { readDeck, deleteDeck } from "../../utils/api";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { readDeck } from "../../utils/api";
+import { Link, useParams } from "react-router-dom";
 import DeckNav from "./DeckNav";
 import DeleteDeck from "./DeleteDeck";
 import CardsList from "../Card/CardsList";
@@ -8,7 +8,6 @@ import CardsList from "../Card/CardsList";
 function Deck() {
   const [deck, setDeck] = useState([]);
   const { deckId } = useParams();
-  const history = useHistory();
 
   useEffect(() => {
     const abortController = new AbortController();
