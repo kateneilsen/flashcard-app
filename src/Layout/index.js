@@ -9,8 +9,6 @@ import Study from "./Study/Study";
 import AddCard from "./Card/AddCard";
 import EditDeck from "./Deck/EditDeck";
 import EditCard from "./Card/EditCard";
-import NotEnough from "./Study/NotEnough";
-import DeleteDeck from "./Deck/DeleteDeck";
 import { Route, Switch } from "react-router-dom";
 
 function Layout() {
@@ -32,7 +30,7 @@ function Layout() {
     }
     loadDecks();
   }, []);
-
+  console.log("deck are ", decks);
   return (
     <div>
       <Header />
