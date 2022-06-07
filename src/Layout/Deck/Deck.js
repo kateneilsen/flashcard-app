@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { readDeck, deleteDeck } from "../../utils/api";
 import { Link, useHistory, useParams } from "react-router-dom";
-import DeckNav from "./CreateDeckNav";
+import DeckNav from "./DeckNav";
 import DeleteDeck from "./DeleteDeck";
 import CardsList from "../Card/CardsList";
 
@@ -30,7 +30,7 @@ function Deck() {
   if (deck.length === 0) return null;
   return (
     <div>
-      <DeckNav />
+      <DeckNav deck={deck} deckId={deckId} />
       <div key={deck.id} className="card">
         <div className="card-body">
           <h5 className="card-title">{deck.name}</h5>
