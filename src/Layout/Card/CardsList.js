@@ -5,8 +5,8 @@ export default function CardsList({ cards }) {
   const { deckId, cardId } = useParams();
   return cards.map((card) => (
     <div className="container">
-      <div className="card">
-        <div key={card.id} className="card-body">
+      <div key={card.id} className="card">
+        <div className="card-body">
           <div className="row">
             <div className="col-sm-6">
               <div>{card.front}</div>
@@ -21,7 +21,7 @@ export default function CardsList({ cards }) {
               >
                 Edit
               </Link>
-              <Link className="btn btn-danger btn-sm">Delete</Link>
+              <button className="btn btn-danger btn-sm">Delete</button>
             </div>
           </div>
         </div>
