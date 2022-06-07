@@ -16,7 +16,7 @@ export default function Study() {
     async function loadDeck() {
       try {
         const response = await readDeck(deckId, abortController.signal);
-        console.log(response);
+        // console.log(response);
         setDeck(response);
       } catch (error) {
         console.log(error);
@@ -29,10 +29,10 @@ export default function Study() {
     loadDeck();
   }, [deckId]);
 
-  console.log(deck);
-  console.log(deckId);
+  // console.log(deck);
+  // console.log(deckId);
   const cards = deck.cards;
-  console.log(cards);
+  // console.log(cards);
 
   return (
     <div>
