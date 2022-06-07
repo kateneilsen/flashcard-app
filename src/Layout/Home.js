@@ -12,6 +12,7 @@ function Home({ decks }) {
           <div key={deck.id} className="card">
             <div className="card-body">
               <h5 className="card-title">{deck.name}</h5>
+              <p>{`${deck.cards.length} cards`}</p>
               <p className="card-text">{deck.description}</p>
               <Link to={`/decks/${deck.id}`} className="btn btn-secondary">
                 View
