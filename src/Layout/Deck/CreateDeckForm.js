@@ -39,7 +39,7 @@ export default function CreateDeckForm({ decks }) {
       <h1>Create Deck</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label for="name" className="form-label">
+          <label htmlFor="name" className="form-label">
             Name
             <input
               className="form-control"

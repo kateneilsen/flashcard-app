@@ -63,7 +63,7 @@ export default function AddCard() {
 
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label for="front" className="form-label">
+          <label htmlFor="front" className="form-label">
             Front
           </label>
           <textarea
@@ -77,7 +77,7 @@ export default function AddCard() {
           />
         </div>
         <div className="mb-3">
-          <label for="back" className="form-label">
+          <label htmlFor="back" className="form-label">
             Back
           </label>
           <textarea
