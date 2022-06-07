@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import CreateDeckButton from "./Deck/CreateDeckButton";
 import { listDecks } from "../utils/api";
 import { Link } from "react-router-dom";
+import DeleteDeck from "./Deck/DeleteDeck";
 
 function Home({ decks }) {
   return (
@@ -19,7 +20,7 @@ function Home({ decks }) {
               <Link to={`/decks/${deck.id}/study`} className="btn btn-primary">
                 Study
               </Link>
-              <button className="btn btn-danger">Delete</button>
+              <DeleteDeck deckId={deck.id} />
             </div>
           </div>
         ))}
