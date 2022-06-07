@@ -6,7 +6,15 @@ import { readDeck } from "../../utils/api";
 
 export default function StudyDeck() {
   const { deckId } = useParams();
-  const [deck, setDeck] = useState([]);
+  const [deck, setDeck] = useState({ cards: [] });
+
+  const [cardIndex, setCardIndex] = useState(0);
+
+  const handleCardIndex = () => {
+    const next = cardIndex + 1 === cards.length ? 0 : cardIndex + 1;
+    console.log(next);
+    setCardIndex(next);
+  };
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -35,7 +43,9 @@ export default function StudyDeck() {
     <div>
       <StudyNav deck={deck} />
       <h1>Study: {deck?.name}</h1>
-      <Flashcard />
+      <div>
+        <Flashcard card={cards[cardIndex]} setCardIndex={setCardIndex} />
+      </div>
     </div>
   );
 }
