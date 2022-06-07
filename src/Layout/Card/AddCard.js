@@ -1,51 +1,93 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { createCard, readDeck } from "../../utils/api";
 import CardNav from "./CardNav";
+import { useHistory, useParams } from "react-router-dom";
 
-export default function AddCard({ deck }) {
-  const initialFormState = {
+export default function AddCard() {
+  const initialCardState = {
     front: "",
     back: "",
   };
 
-  const [cardData, setCardData] = useState({ ...initialFormState });
-  const handleChange = ({ target }) => {
-    setCardData({
-      ...cardData,
-      [target.name]: target.value,
-    });
+  const history = useHistory();
+  const { deckId } = useParams();
+
+  const [card, setCard] = useState({ ...initialCardState });
+
+  const [deck, setDeck] = useState({ deckId });
+
+  useEffect(() => {
+    const abortController = new AbortController();
+    async function loadDeck() {
+      try {
+        const response = await readDeck(deckId, abortController.signal);
+        setDeck(response);
+      } catch (error) {
+        console.log(error);
+      }
+
+      return () => {
+        abortController.abort();
+      };
+    }
+    loadDeck();
+  }, [deckId]);
+
+  const handleChange = (event) => {
+    setCard({ ...card, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = (event) => {
+  async function handleSubmit(event) {
     event.preventDefault();
-    console.log("Submitted:", cardData);
-    setCardData({ ...initialFormState });
-  };
+    const response = await createCard(deckId, card);
+    setCard({ ...initialCardState });
+  }
 
   return (
     <div>
       <CardNav />
+      <h2>{deck.name}: Add Card</h2>
 
       <form onSubmit={handleSubmit}>
-        <label htmlFor="front">
-          Front
+        <div className="mb-3">
+          <label for="front" className="form-label">
+            Front
+          </label>
           <textarea
+            className="form-control"
             type="text"
             name="front"
+            id="front"
             onChange={handleChange}
-            value={cardData.front}
+            value={card.front}
+            rows="2"
           />
-        </label>
-        <label htmlFor="back">
-          Back
+        </div>
+        <div className="mb-3">
+          <label for="back" className="form-label">
+            Back
+          </label>
           <textarea
+            className="form-control"
             type="text"
             name="back"
+            id="back"
             onChange={handleChange}
-            value={cardData.back}
+            value={card.back}
+            rows="2"
           />
-        </label>
-        <button className="btn btn-sm btn-secondary">Done</button>
-        <button className="btn btn-sm btn-primary">Save</button>
+        </div>
+        <div>
+          <button
+            className="btn btn-sm btn-secondary"
+            onClick={() => history.push(`/decks/${deckId}`)}
+          >
+            Done
+          </button>
+          <button type="submit" className="btn btn-sm btn-primary">
+            Save
+          </button>
+        </div>
       </form>
     </div>
   );
