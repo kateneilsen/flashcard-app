@@ -1,64 +1,60 @@
 import React, { useState } from "react";
 import { createDeck } from "../../utils/api/index";
-import CreateDeckNav from "./CreateDeckNav";
+import DeckNav from "./DeckNav";
 import { useHistory } from "react-router-dom";
 
 function CreateDeckForm({ decks }) {
-  // const [name, setName] = useState("");
-  // const [description, setDescription] = useState("");
-
-  const initialFormState = {
+  const initialDeckState = {
     name: "",
     description: "",
   };
 
-  const [formData, setFormData] = useState({ ...initialFormState });
+  const [deck, setDeck] = useState({ ...initialDeckState });
 
   const history = useHistory();
 
-  const handleChange = ({ target }) => {
-    setFormData({
-      ...formData,
-      [target.name]: target.value,
-    });
+  const handleChange = (event) => {
+    setDeck({ ...deck, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = (event) => {
+  async function handleSubmit(event) {
     event.preventDefault();
-    console.log("Submitted:", formData);
-    setFormData({ ...initialFormState });
-    history.push("/decks/:deckId");
-  };
-
-  // const handleCancel = (event) => {
-  //   event.preventDefault();
-  //   history.push("/");
-  // };
+    const response = await createDeck(deck);
+    history.push(`/decks/${response.id}`);
+  }
 
   return (
     <div>
-      <CreateDeckNav />
+      <DeckNav />
+      <h1>Create Deck</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">
-          Name
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-          />
-        </label>
-        <label htmlFor="description">
-          Description
-          <textarea
-            type="text"
-            name="description"
-            id="description"
-            value={formData.description}
-            onChange={handleChange}
-          />
-        </label>
+        <div className="mb-3">
+          <label for="name" className="form-label">
+            Name
+            <input
+              className="form-control"
+              type="text"
+              id="name"
+              name="name"
+              value={deck.name}
+              onChange={handleChange}
+            />
+          </label>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="description">
+            Description
+            <textarea
+              className="form-control"
+              type="text"
+              rows="4"
+              name="description"
+              id="description"
+              value={deck.description}
+              onChange={handleChange}
+            />
+          </label>
+        </div>
 
         <div>
           <button

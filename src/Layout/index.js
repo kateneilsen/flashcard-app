@@ -19,7 +19,7 @@ function Layout() {
     async function loadDecks() {
       try {
         const response = await listDecks(abortController.signal);
-        console.log("setDecks:", response);
+        // console.log("setDecks:", response);
         setDecks(response);
       } catch (error) {
         console.log(error);
@@ -38,32 +38,32 @@ function Layout() {
       <div className="container">
         {/* TODO: Implement the screen starting here */}
         <Switch>
-          <Route exact path="/">
-            <Home decks={decks} />
-          </Route>
-
           <Route exact path="/decks/new">
             <CreateDeckForm />
           </Route>
 
-          <Route path="/decks/:deckId/cards/:cardId/edit">
+          <Route exact path="/decks/:deckId/cards/:cardId/edit">
             <EditCard />
           </Route>
 
-          <Route path="/decks/:deckId/cards/new">
+          <Route exact path="/decks/:deckId/cards/new">
             <AddCard />
           </Route>
 
-          <Route path="/decks/:deckId/edit">
-            <EditDeck />
+          <Route exact path="/decks/:deckId/edit">
+            <EditDeck decks={decks} />
           </Route>
 
-          <Route path="/decks/:deckId/study">
+          <Route exact path="/decks/:deckId/study">
             <StudyDeck decks={decks} />
           </Route>
 
-          <Route path="/decks/:deckId">
+          <Route exact path="/decks/:deckId">
             <Deck />
+          </Route>
+
+          <Route exact path="/">
+            <Home decks={decks} />
           </Route>
 
           <Route>
