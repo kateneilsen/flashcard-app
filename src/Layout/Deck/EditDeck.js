@@ -3,17 +3,11 @@ import { readDeck, updateDeck } from "../../utils/api";
 import DeckNav from "./DeckNav";
 import { useParams, useHistory } from "react-router-dom";
 
-export default function EditDeck() {
+export default function EditDeck({ decks }) {
   const history = useHistory();
-  const deckId = useParams();
+  const { deckId } = useParams();
 
-  const initialDeckState = {
-    id: "",
-    name: "",
-    description: "",
-  };
-
-  const [deck, setDeck] = useState({ ...initialDeckState });
+  const [deck, setDeck] = useState({ deckId });
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -53,28 +47,36 @@ export default function EditDeck() {
 
   return (
     <div>
+      <DeckNav />
       <h1>Edit Deck</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">
-          Name
+        <div className="mb-3">
+          <label for="name" className="form-label">
+            Name
+          </label>
           <input
+            className="form-control"
             type="text"
             id="name"
             name="name"
             value={deck.name}
             onChange={handleChange}
           />
-        </label>
-        <label htmlFor="description">
-          Description
+        </div>
+        <div className="mb-3">
+          <label for="description" className="form-label">
+            Description
+          </label>
           <textarea
+            className="form-control"
             type="text"
             name="description"
             id="description"
             value={deck.description}
             onChange={handleChange}
+            rows="4"
           />
-        </label>
+        </div>
 
         <div>
           <button
