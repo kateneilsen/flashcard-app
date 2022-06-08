@@ -34,27 +34,34 @@ function Deck() {
         <div className="card-body">
           <h5 className="card-title">{deck.name}</h5>
           <p className="card-text">{deck.description}</p>
-        </div>
-        <div>
-          <Link
-            to={`/decks/${deckId}/edit`}
-            className="btn btn-secondary mb-2 mr-2 ml-2"
-          >
-            Edit
-          </Link>
-          <Link
-            to={`/decks/${deckId}/study`}
-            className="btn btn-primary mb-2 mr-2"
-          >
-            Study
-          </Link>
-          <Link
-            to={`/decks/${deckId}/cards/new`}
-            className="btn btn-primary mb-2 mr-2"
-          >
-            Add Cards
-          </Link>
-          <DeleteDeck deck={deck} setDeck={setDeck} />
+
+          <div className="row mt-2">
+            <div className="col-10">
+              <Link
+                to={`/decks/${deckId}/edit`}
+                className="btn btn-secondary mb-2 mr-2 "
+              >
+                Edit
+              </Link>
+
+              <Link
+                to={`/decks/${deckId}/study`}
+                className="btn btn-primary mb-2 mr-2"
+              >
+                Study
+              </Link>
+
+              <Link
+                to={`/decks/${deckId}/cards/new`}
+                className="btn btn-primary mb-2 mr-2"
+              >
+                Add Cards
+              </Link>
+            </div>
+            <div className="col-2">
+              <DeleteDeck deck={deck} setDeck={setDeck} />
+            </div>
+          </div>
         </div>
       </div>
       <div>

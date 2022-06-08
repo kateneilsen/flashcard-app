@@ -101,12 +101,12 @@ export default function CardForm({ card }) {
         )}
         <div>
           <button
-            className="btn btn-sm btn-secondary"
+            className="btn  btn-secondary mr-2"
             onClick={() => history.push(`/decks/${deckId}`)}
           >
             Done
           </button>
-          <button type="submit" className="btn btn-sm btn-primary">
+          <button type="submit" className="btn  btn-primary">
             Save
           </button>
         </div>

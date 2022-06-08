@@ -7,23 +7,24 @@ export default function CardsList({ cards }) {
   return cards.map((card) => (
     <div key={card.id} className="card mb-2">
       <div className="card-body">
-        <div className="row">
-          <div className="col-sm-6">
-            <div>{card.front}</div>
-            <div className="mt-4">
-              <Link
-                to={`/decks/${deckId}/cards/${card.id}/edit`}
-                className="btn btn-secondary mr-2 mb-2 mt-4"
-              >
-                Edit
-              </Link>
+        <div className="container">
+          <div className="row">
+            <div className="col-6">
+              <p>{card.front}</p>
             </div>
-          </div>
-          <div className="col-sm-6">
-            <div>{card.back}</div>
+            <div className="col-6 ">
+              <div className="row justify-content-end">
+                <p>{card.back}</p>
 
-            <div>
-              <DeleteCard card={card} />
+                <Link
+                  to={`/decks/${deckId}/cards/${card.id}/edit`}
+                  className="btn btn-secondary mr-2 mb-2 mt-4"
+                >
+                  Edit
+                </Link>
+
+                <DeleteCard card={card} />
+              </div>
             </div>
           </div>
         </div>

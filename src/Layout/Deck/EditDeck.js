@@ -98,7 +98,7 @@ export default function EditDeck({ decks }) {
         <div>
           <button
             type="button"
-            className="btn btn-secondary"
+            className="btn btn-secondary mr-2"
             onClick={() => handleCancel()}
           >
             Cancel

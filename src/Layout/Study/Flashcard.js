@@ -22,7 +22,7 @@ export default function Flashcard({ cards, card, cardIndex, setCardIndex }) {
         <div className="card-body">
           <p className="card-text">{flipped ? card?.back : card?.front}</p>
           <button
-            className="btn btn-small btn-secondary"
+            className="btn btn-small btn-secondary mr-2"
             onClick={() => setFlipped(!flipped)}
           >
             Flip
