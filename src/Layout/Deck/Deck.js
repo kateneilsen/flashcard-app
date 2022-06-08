@@ -28,7 +28,7 @@ function Deck() {
 
   if (deck.length === 0) return null;
   return (
-    <div>
+    <div className="container">
       <DeckNav deck={deck} deckId={deckId} />
       <div key={deck.id} className="card">
         <div className="card-body">
@@ -36,19 +36,28 @@ function Deck() {
           <p className="card-text">{deck.description}</p>
         </div>
         <div>
-          <Link to={`/decks/${deckId}/edit`} className="btn btn-secondary">
+          <Link
+            to={`/decks/${deckId}/edit`}
+            className="btn btn-secondary mb-2 mr-2 ml-2"
+          >
             Edit
           </Link>
-          <Link to={`/decks/${deckId}/study`} className="btn btn-primary">
+          <Link
+            to={`/decks/${deckId}/study`}
+            className="btn btn-primary mb-2 mr-2"
+          >
             Study
           </Link>
-          <Link to={`/decks/${deckId}/cards/new`} className="btn btn-primary ">
+          <Link
+            to={`/decks/${deckId}/cards/new`}
+            className="btn btn-primary mb-2 mr-2"
+          >
             Add Cards
           </Link>
           <DeleteDeck deck={deck} setDeck={setDeck} />
         </div>
       </div>
-      <div className="container">
+      <div>
         <h1>Cards</h1>
         <CardsList cards={deck.cards} />
       </div>

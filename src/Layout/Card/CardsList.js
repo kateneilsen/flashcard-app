@@ -10,17 +10,19 @@ export default function CardsList({ cards }) {
         <div className="row">
           <div className="col-sm-6">
             <div>{card.front}</div>
-          </div>
-          <div className="col-sm-6">
-            <div>{card.back}</div>
-
-            <div className="row">
+            <div className="mt-4">
               <Link
                 to={`/decks/${deckId}/cards/${card.id}/edit`}
                 className="btn btn-secondary mr-2 mb-2 mt-4"
               >
                 Edit
               </Link>
+            </div>
+          </div>
+          <div className="col-sm-6">
+            <div>{card.back}</div>
+
+            <div>
               <DeleteCard card={card} />
             </div>
           </div>

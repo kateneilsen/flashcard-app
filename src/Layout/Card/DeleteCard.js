@@ -11,7 +11,7 @@ function DeleteCard({ card }) {
   };
   return (
     <button
-      className="btn btn-sm btn-danger"
+      className="btn btn-danger mr-2 mb-2 mt-4"
       onClick={() =>
         window.confirm(
           "Delete this deck? \n\n You will not be able to recover it."

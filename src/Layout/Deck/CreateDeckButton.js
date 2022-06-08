@@ -7,7 +7,7 @@ function CreateDeckButton() {
   return (
     <button
       type="button"
-      className="btn btn-secondary"
+      className="btn btn-secondary mb-3"
       onClick={() => history.push("/decks/new")}
     >
       +Create Deck

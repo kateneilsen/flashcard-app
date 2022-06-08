@@ -13,7 +13,7 @@ export default function DeleteDeck({ deckId, decks, setDecks }) {
   }
   return (
     <button
-      className="btn btn-danger"
+      className="btn btn-danger mb-2 "
       onClick={() =>
         window.confirm(
           "Delete this deck? \n\n You will not be able to recover it."
@@ -22,7 +22,7 @@ export default function DeleteDeck({ deckId, decks, setDecks }) {
           : console.log("You clicked cancel")
       }
     >
-      DeleteDeck
+      Delete
     </button>
   );
 }
