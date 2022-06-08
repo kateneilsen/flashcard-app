@@ -24,17 +24,19 @@ export default function CreateDeckForm({ decks }) {
   }
 
   return (
-    <div className="container-fluid">
-      <nav aria-label="breadcrumb">
-        <ol className="breadcrumb">
-          <li className="breadcrumb-item active" aria-current="page">
-            <Link to="/">Home</Link>
-          </li>
-          <li className="breadcrumb-item active" aria-current="page">
-            Create Deck
-          </li>
-        </ol>
-      </nav>
+    <div className="container ">
+      <div>
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item active" aria-current="page">
+              <Link to="/">Home</Link>
+            </li>
+            <li className="breadcrumb-item active" aria-current="page">
+              Create Deck
+            </li>
+          </ol>
+        </nav>
+      </div>
 
       <header>
         <h1>Create Deck</h1>
@@ -51,7 +53,6 @@ export default function CreateDeckForm({ decks }) {
               value={deck.name}
               placeholder="Deck Name"
               onChange={handleChange}
-              style={{ width: "100%" }}
             />
           </label>
         </div>
@@ -67,7 +68,6 @@ export default function CreateDeckForm({ decks }) {
               value={deck.description}
               placeholder="Brief description of the deck"
               onChange={handleChange}
-              style={{ width: "100%" }}
             />
           </label>
         </div>
@@ -81,7 +81,7 @@ export default function CreateDeckForm({ decks }) {
             Cancel
           </button>
 
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary mr-1">
             Submit
           </button>
         </div>

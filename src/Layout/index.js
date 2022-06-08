@@ -3,7 +3,7 @@ import { listDecks } from "../utils/api";
 import Header from "./Header";
 import NotFound from "./NotFound";
 import Home from "./Home";
-import CreateDeck from "./Deck/CreateDeck";
+import CreateDeckForm from "./Deck/CreateDeckForm";
 import Deck from "./Deck/Deck";
 import Study from "./Study/Study";
 import AddCard from "./Card/AddCard";
@@ -38,7 +38,7 @@ function Layout() {
         {/* TODO: Implement the screen starting here */}
         <Switch>
           <Route exact path="/decks/new">
-            <CreateDeck />
+            <CreateDeckForm />
           </Route>
 
           <Route path="/decks/:deckId/cards/:cardId/edit">

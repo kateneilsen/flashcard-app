@@ -14,10 +14,13 @@ function Home({ decks }) {
               <h5 className="card-title">{deck.name}</h5>
               <p>{`${deck.cards.length} cards`}</p>
               <p className="card-text">{deck.description}</p>
-              <Link to={`/decks/${deck.id}`} className="btn btn-secondary">
+              <Link to={`/decks/${deck.id}`} className="btn btn-secondary mr-2">
                 View
               </Link>
-              <Link to={`/decks/${deck.id}/study`} className="btn btn-primary">
+              <Link
+                to={`/decks/${deck.id}/study`}
+                className="btn btn-primary mr-2"
+              >
                 Study
               </Link>
               <DeleteDeck deckId={deck.id} />
