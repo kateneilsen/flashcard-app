@@ -41,7 +41,7 @@ export default function CreateDeckForm({ decks }) {
       <header>
         <h1>Create Deck</h1>
       </header>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="">
         <div>
           <label>
             Name
@@ -75,7 +75,7 @@ export default function CreateDeckForm({ decks }) {
         <div>
           <button
             type="button"
-            className="btn btn-secondary"
+            className="btn btn-secondary mr-2"
             onClick={() => history.push("/")}
           >
             Cancel
