@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 
 export default function CreateDeckForm({ decks }) {
   const initialDeckState = {
+    id: "",
     name: "",
     description: "",
   };
@@ -23,23 +24,24 @@ export default function CreateDeckForm({ decks }) {
   }
 
   return (
-    <div>
-      <div>
-        <nav aria-label="breadcrumb">
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item active" aria-current="page">
-              <Link to="/">Home</Link>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              Create Deck
-            </li>
-          </ol>
-        </nav>
-      </div>
-      <h1>Create Deck</h1>
+    <div className="container-fluid">
+      <nav aria-label="breadcrumb">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item active" aria-current="page">
+            <Link to="/">Home</Link>
+          </li>
+          <li className="breadcrumb-item active" aria-current="page">
+            Create Deck
+          </li>
+        </ol>
+      </nav>
+
+      <header>
+        <h1>Create Deck</h1>
+      </header>
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="name" className="form-label">
+        <div>
+          <label>
             Name
             <input
               className="form-control"
@@ -47,21 +49,25 @@ export default function CreateDeckForm({ decks }) {
               id="name"
               name="name"
               value={deck.name}
+              placeholder="Deck Name"
               onChange={handleChange}
+              style={{ width: "100%" }}
             />
           </label>
         </div>
-        <div className="mb-3">
-          <label htmlFor="description">
+        <div>
+          <label>
             Description
             <textarea
               className="form-control"
-              type="text"
+              type="textarea"
               rows="4"
               name="description"
               id="description"
               value={deck.description}
+              placeholder="Brief description of the deck"
               onChange={handleChange}
+              style={{ width: "100%" }}
             />
           </label>
         </div>

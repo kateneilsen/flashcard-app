@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { readDeck, updateCard, readCard } from "../../utils/api";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { readDeck, readCard } from "../../utils/api";
+import { Link, useParams } from "react-router-dom";
+import CardForm from "./CardForm";
 
 export default function EditCard() {
   const initialCardState = {
@@ -11,7 +12,6 @@ export default function EditCard() {
   };
 
   const { deckId, cardId } = useParams();
-  const history = useHistory();
 
   const [card, setCard] = useState(initialCardState);
   const [deck, setDeck] = useState([]);
@@ -35,25 +35,6 @@ export default function EditCard() {
     loadData();
   }, [cardId, deckId]);
 
-  const handleChange = ({ target }) => {
-    setCard({
-      ...card,
-      [target.name]: target.value,
-    });
-  };
-  async function handleSubmit(event) {
-    event.preventDefault();
-    const abortController = new AbortController();
-    const response = await updateCard({ ...card }, abortController.signal);
-
-    history.push(`/decks/${deckId}`);
-    return response;
-  }
-
-  async function handleCancel() {
-    history.push(`decks/${deckId}`);
-  }
-
   return (
     <div>
       <div>
@@ -72,49 +53,7 @@ export default function EditCard() {
         </nav>
       </div>
       <h1>Edit Card</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label for="name" className="form-label">
-            Front
-          </label>
-          <textarea
-            className="form-control"
-            type="text"
-            id="front"
-            name="front"
-            value={card.front}
-            onChange={handleChange}
-            rows="2"
-          />
-        </div>
-        <div className="mb-3">
-          <label for="description" className="form-label">
-            Back
-          </label>
-          <textarea
-            className="form-control"
-            type="text"
-            name="back"
-            id="back"
-            value={card.back}
-            onChange={handleChange}
-            rows="2"
-          />
-        </div>
-
-        <div>
-          <button
-            type="button"
-            className="btn btn-secondary"
-            onClick={() => handleCancel()}
-          >
-            Cancel
-          </button>
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
-        </div>
-      </form>
+      <CardForm card={card} />
     </div>
   );
 }

@@ -6,7 +6,13 @@ export default function EditDeck({ decks }) {
   const history = useHistory();
   const { deckId } = useParams();
 
-  const [deck, setDeck] = useState({ deckId });
+  const initialDeckState = {
+    id: "",
+    name: "",
+    description: "",
+  };
+
+  const [deck, setDeck] = useState(initialDeckState);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -63,8 +69,7 @@ export default function EditDeck({ decks }) {
       </div>
       <h1>Edit Deck</h1>
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <div className="form-group"></div>
+        <div className="form-group">
           <label>Name</label>
           <input
             className="form-control"
@@ -72,19 +77,19 @@ export default function EditDeck({ decks }) {
             type="text"
             name="name"
             value={deck.name}
+            placeholder={deck.name}
             onChange={handleChange}
           />
         </div>
-        <div className="mb-3">
-          <label htmlFor="description" className="form-label">
-            Description
-          </label>
+        <div className="form-group">
+          <label>Description</label>
           <textarea
             className="form-control"
             type="text"
             name="description"
             id="description"
             value={deck.description}
+            placeholder={deck.description}
             onChange={handleChange}
             rows="4"
           />

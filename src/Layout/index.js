@@ -3,7 +3,7 @@ import { listDecks } from "../utils/api";
 import Header from "./Header";
 import NotFound from "./NotFound";
 import Home from "./Home";
-import CreateDeckForm from "./Deck/CreateDeckForm";
+import CreateDeck from "./Deck/CreateDeck";
 import Deck from "./Deck/Deck";
 import Study from "./Study/Study";
 import AddCard from "./Card/AddCard";
@@ -30,7 +30,7 @@ function Layout() {
     }
     loadDecks();
   }, []);
-  console.log("deck are ", decks);
+  // console.log("deck are ", decks);
   return (
     <div>
       <Header />
@@ -38,7 +38,7 @@ function Layout() {
         {/* TODO: Implement the screen starting here */}
         <Switch>
           <Route exact path="/decks/new">
-            <CreateDeckForm />
+            <CreateDeck />
           </Route>
 
           <Route path="/decks/:deckId/cards/:cardId/edit">
